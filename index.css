@@ -1,0 +1,107 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+* {
+    font-family: 'Pretendard-Regular';
+}
+body {
+    background-color: #1A1A1A;
+    margin: 0px;
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 배치 */
+    justify-content: center; /* 수직 가운데 정렬 */
+    height: 100vh; /* 화면 전체 높이를 차지하도록 설정 */
+    scroll-snap-type: y mandatory;
+    color: white; /* 텍스트 색상 */
+    height: 1000px;
+}
+a.menu {
+    animation: fadeIn 1.5s ease-in;
+    font-family: 'GmarketSansMedium';
+    color: #2b3b6f;
+    padding: 10px 20px; /* 안쪽 여백 */
+    background-color: #4c63af; /* 배경색 */
+    color: white; /* 텍스트 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+    font-weight: bold; /* 볼드체 */
+    border-radius: 5px; /* 모서리 둥글게 */
+}
+
+/* 네비게이션 메뉴 스타일 */
+nav.textmenu {
+    margin-top: 50px;
+    margin-right: 10px;
+    float: right;
+    font-family: 'GmarketSansMedium';
+    display: flex; /* 플렉스박스 사용 */
+    justify-content: center; /* 가운데 정렬 */
+    align-items: center; /* 수직 정렬 */
+    padding: 10px;
+    background: linear-gradient(45deg, #5c63f0, #771edd);
+    border-radius: 40px; /* 모서리 둥글게 */
+    gap: 10px; /* 요소 간 간격 */
+    margin-bottom: 20px; /* 아래 여백 */
+}
+
+/* 네비게이션 링크 스타일 */
+nav.textmenu a {
+    animation: fadeIn 1.5s ease-in;
+    padding: 12px 20px;
+    color: #ece3ff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease, background-color 0.3s ease; /* 색상 전환 효과 */
+    text-align: center;
+    border-radius: 4px;
+}
+
+/* 네비게이션 링크 hover 효과 */
+nav.textmenu a {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, color 0.3s ease; /* 색상 및 크기 전환 */
+}
+
+nav.textmenu a:hover {
+    color: #ece3ff;
+    transform: translateY(-3px) scale(1.1); /* 위로 이동하며 크기 확대 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+}
+
+/* 네비게이션 hover 아래 라인 효과 */
+nav.textmenu a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: #f2f5ff;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+nav.textmenu a:hover::before {
+    width: 100%;
+    left: 0;
+}
+
+/* 숨김 처리된 마지막 빈 span */
+nav.textmenu span {
+    display: none;
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 2rem;
+    flex-grow: 1; /* 상단 메뉴와 공간을 나누기 위한 설정 */
+}
+
+.head1{
+    margin-top: 200px;
+}

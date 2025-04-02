@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="nav">
+        <nav class="textmenu">
+            <a href="ProjectMC_home.html">Home</a>
+            <a href="ProjectMC_about.html">About</a>
+            <a href="ProjectMC_profile.html">Profile</a>
+            <a href="ProjectMC_project.html">Project</a>
+            <a href="ProjectMC_Contact.html">Contact</a>
+            <span></span>
+        </nav>
+    </div>
+    
+    <h1 class="head1">
+        <span>어</span>
+        <span>쩌</span>
+        <span>고</span>
+        <span> </span> <!-- 띄어쓰기 추가 -->
+        <span>&nbsp;</span> <!-- 띄어쓰기 추가 -->
+        <span>저</span>
+        <span>쩌</span>
+        <span>고</span>
+        <span>&nbsp;</span> <!-- 띄어쓰기 추가 -->
+        <span> </span> <!-- 띄어쓰기 추가 -->
+        <span>가</span>
+        <span>치</span>
+        <span>를</span> 
+        <span>&nbsp;</span> <!-- 띄어쓰기 추가 -->
+        <span> </span> <!-- 띄어쓰기 추가 -->
+        <span>추</span>
+        <span>구</span>
+        <span>합</span>
+        <span>니</span>
+        <span>다</span>
+    </h1>
+    
+
+    <!-- motion 라이브러리 임포트 -->
+    <script type="module">
+        import { animate, stagger } from "https://cdn.jsdelivr.net/npm/motion@12.6.0/+esm";
+        
+        // 각 글자가 아래에서 위로 올라오도록 애니메이션 적용
+        animate(".head1 span", { opacity: [0, 1], y: [-80, 0] }, { delay: stagger(0.1), ease: "linear", duration: 1 });
+
+        inView("#carousel li", (element) => {
+            animate(element, { opacity: 1 })
+        });
+    </script>
+</body>
+</html>
