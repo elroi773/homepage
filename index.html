@@ -17,31 +17,36 @@
             <span></span>
         </nav>
     </div>
-    
-    <h1 class="head1">
+    <br>
+    <h1 class="head1 fade-in"> <!-- 애니메이션 적용 -->
         <span>어</span>
         <span>쩌</span>
         <span>고</span>
-        <span> </span> <!-- 띄어쓰기 추가 -->
-        <span>&nbsp;</span> <!-- 띄어쓰기 추가 -->
         <span>저</span>
         <span>쩌</span>
         <span>고</span>
-        <span>&nbsp;</span> <!-- 띄어쓰기 추가 -->
-        <span> </span> <!-- 띄어쓰기 추가 -->
         <span>가</span>
         <span>치</span>
-        <span>를</span> 
-        <span>&nbsp;</span> <!-- 띄어쓰기 추가 -->
-        <span> </span> <!-- 띄어쓰기 추가 -->
+        <span>를</span>
         <span>추</span>
         <span>구</span>
         <span>합</span>
         <span>니</span>
         <span>다</span>
     </h1>
+    <br>
+    <div class="box-section fade-in">
+        <div class="section-box">가치1</div>
+        <div class="section-box">가치2</div>
+        <div class="section-box">가치3</div>
+    </div>
     
+    <div class="main fade-in">
+        <span class="one_text">We are </span>
+        <span class="two_text">Loading</span>
+    </div>
 
+    
     <!-- motion 라이브러리 임포트 -->
     <script type="module">
         import { animate, stagger } from "https://cdn.jsdelivr.net/npm/motion@12.6.0/+esm";
@@ -49,9 +54,45 @@
         // 각 글자가 아래에서 위로 올라오도록 애니메이션 적용
         animate(".head1 span", { opacity: [0, 1], y: [-80, 0] }, { delay: stagger(0.1), ease: "linear", duration: 1 });
 
-        inView("#carousel li", (element) => {
-            animate(element, { opacity: 1 })
+        document.addEventListener("DOMContentLoaded", () => {
+        const two_text = document.querySelector(".two_text");
+
+        if (!two_text) {
+            console.error("❌ .two_text 클래스를 가진 요소를 찾을 수 없습니다!");
+            return;
+        }
+
+        const textArray = ["Possibility", "Potential", "Programming"];
+        let index = 0;
+
+        const textmain = () => {
+            two_text.textContent = textArray[index];
+            index = (index + 1) % textArray.length;
+        };
+
+        textmain(); // 처음 실행
+        setInterval(textmain, 3000);
+        }); //타이포
+
+        document.addEventListener("DOMContentLoaded", () => {
+        let observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, {
+            threshold: 0.3 // 30% 이상 화면에 보이면 실행
         });
+
+        // 모든 요소 선택 (특정 클래스를 가진 요소만 선택하는 것이 좋음)
+        let elements = document.querySelectorAll('.fade-in');
+
+        // 각 요소를 감시하도록 설정
+        elements.forEach((el) => observer.observe(el));
+    });
+
     </script>
 </body>
 </html>
