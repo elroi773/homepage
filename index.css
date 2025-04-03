@@ -9,16 +9,18 @@
 }
 body {
     background-color: #1A1A1A;
-    margin: 0px;
+    margin: 0;
     text-align: center;
     display: flex;
-    flex-direction: column; /* 세로 방향으로 배치 */
-    justify-content: center; /* 수직 가운데 정렬 */
-    height: 100vh; /* 화면 전체 높이를 차지하도록 설정 */
+    flex-direction: column;
+    align-items: center; /* 가로 중앙 정렬 */
+    justify-content: flex-start; /* 위에서부터 정렬 */
+    min-height: 100vh;
     scroll-snap-type: y mandatory;
-    color: white; /* 텍스트 색상 */
-    height: 1000px;
+    color: white;
+    height: auto; /* 기존 2000px 고정값 삭제 */
 }
+
 a.menu {
     animation: fadeIn 1.5s ease-in;
     font-family: 'GmarketSansMedium';
@@ -45,6 +47,7 @@ nav.textmenu {
     border-radius: 40px; /* 모서리 둥글게 */
     gap: 10px; /* 요소 간 간격 */
     margin-bottom: 20px; /* 아래 여백 */
+    position: fixed;
 }
 
 /* 네비게이션 링크 스타일 */
@@ -103,5 +106,76 @@ h1 {
 }
 
 .head1{
-    margin-top: 200px;
+    margin-top: 300px;
+}
+
+.box-section {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 40px; /* 요소 간 간격 조정 */
+    margin-top: 500px; /* 위쪽 여백 추가 */
+    margin-bottom: 250px;
+}
+
+.section-box {
+    width: 370px;
+    height: 330px;
+    display: flex;
+    justify-content: center; /* 내부 내용 정렬 */
+    align-items: center; /* 내부 내용 세로 정렬 */
+    border-radius: 30px;
+    background-color: #5c63f0;
+    text-align: center;
+}
+
+
+.main {
+    display: flex;
+    flex-direction: row; /* 📌 가로 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    margin-top: 300px; /* 원하는 위치 조정 */
+    gap: 20px; /* 요소 간 간격 조정 */
+    margin-bottom: 200px;
+}
+
+
+.one_text, .two_text{
+    position: relative;
+    font-size: 30px;
+    font-weight: bold;
+    font-size: 60px; /* 기존 30px에서 증가 */
+}
+
+.two_text{
+    color: #771edd;
+}
+
+.two_text:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color:#1A1A1A;
+    border-left: 2px solid #771edd;
+    animation: animate 3s steps(5) infinite;
+}
+
+@keyframes animate{
+    40%, 60%{
+        left:calc(100% + 1px);
+    }
+
+    100%{
+        left: 0%;
+    }
+}
+
+.fade-in {
+    opacity: 0; /* 처음에는 보이지 않게 */
+    transform: translateY(30px); /* 아래에서 올라오는 효과 */
+    transition: opacity 1s ease-out, transform 1s ease-out;
 }
