@@ -7,16 +7,7 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div class="nav">
-        <nav class="textmenu">
-            <a href="ProjectMC_home.html">Home</a>
-            <a href="ProjectMC_about.html">About</a>
-            <a href="ProjectMC_profile.html">Profile</a>
-            <a href="ProjectMC_project.html">Project</a>
-            <a href="ProjectMC_Contact.html">Contact</a>
-            <span></span>
-        </nav>
-    </div>
+    
     <br>
     <h1 class="head1 fade-in"> <!-- 애니메이션 적용 -->
         <span>어</span>
@@ -35,17 +26,32 @@
         <span>다</span>
     </h1>
     <br>
-    <div class="box-section fade-in">
-        <div class="section-box">가치1</div>
-        <div class="section-box">가치2</div>
-        <div class="section-box">가치3</div>
-    </div>
+    <div class="scroll-container fade-in">
+        <div class="box-section">
+            <div class="section-box">가치1</div>
+            <div class="section-box">가치2</div>
+            <div class="section-box">가치3</div>
+            <div class="section-box">가치4</div>
+            <div class="section-box">가치5</div>
+            <div class="section-box">가치6</div>
+        </div>
+    </div>  
     
     <div class="main fade-in">
         <span class="one_text">We are </span>
         <span class="two_text">Loading</span>
     </div>
 
+    <div class="nav">
+        <nav class="textmenu">
+            <a href="">Home</a>
+            <a href="">About</a>
+            <a href="">Profile</a>
+            <a href="">Portfolio</a>
+            <a href="">Contact</a>
+            <span></span>
+        </nav>
+    </div>
     
     <!-- motion 라이브러리 임포트 -->
     <script type="module">
@@ -63,35 +69,65 @@
         }
 
         const textArray = ["Possibility", "Potential", "Programming"];
-        let index = 0;
+            let index = 0;
 
-        const textmain = () => {
-            two_text.textContent = textArray[index];
-            index = (index + 1) % textArray.length;
-        };
+            const textmain = () => {
+                two_text.textContent = textArray[index];
+                index = (index + 1) % textArray.length;
+            };
 
-        textmain(); // 처음 실행
-        setInterval(textmain, 3000);
+            textmain(); // 처음 실행
+            setInterval(textmain, 3000);
         }); //타이포
 
         document.addEventListener("DOMContentLoaded", () => {
-        let observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = "translateY(0)";
-                }
+            let observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            }, {
+                threshold: 0.3 // 30% 이상 화면에 보이면 실행
             });
-        }, {
-            threshold: 0.3 // 30% 이상 화면에 보이면 실행
+
+            // 모든 요소 선택 (특정 클래스를 가진 요소만 선택하는 것이 좋음)
+            let elements = document.querySelectorAll('.fade-in');
+
+            // 각 요소를 감시하도록 설정
+            elements.forEach((el) => observer.observe(el));
         });
 
-        // 모든 요소 선택 (특정 클래스를 가진 요소만 선택하는 것이 좋음)
-        let elements = document.querySelectorAll('.fade-in');
+        const container = document.querySelector('.scroll-container');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
 
-        // 각 요소를 감시하도록 설정
-        elements.forEach((el) => observer.observe(el));
-    });
+        container.addEventListener('mousedown', (e) => {
+            isDown = true;
+            container.classList.add('active');
+            startX = e.pageX - container.offsetLeft;
+            scrollLeft = container.scrollLeft;
+        });
+
+        container.addEventListener('mouseleave', () => {
+            isDown = false;
+            container.classList.remove('active');
+        });
+
+        container.addEventListener('mouseup', () => {
+            isDown = false;
+            container.classList.remove('active');
+        });
+
+        container.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - container.offsetLeft;
+            const walk = (x - startX) * 2; // 이동 속도 조절
+            container.scrollLeft = scrollLeft - walk;
+        });
 
     </script>
 </body>
