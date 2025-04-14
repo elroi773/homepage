@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Pretendard', sans-serif;
+    background: linear-gradient(120deg, #f6fafd, #e0f7ff);
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #1a73e8;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 50px;
+}
+
+.traits {
+    display: grid;
+    gap: 30px;
+}
+
+.trait {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.trait:hover {
+    transform: translateY(-8px);
+}
+
+.trait h2 {
+    color: #0077cc;
+    margin-bottom: 10px;
+}
+
+.trait p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Fade-in animations */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
+}
+
+.delay1 { animation-delay: 0.3s; }
+.delay2 { animation-delay: 0.6s; }
+.delay3 { animation-delay: 0.9s; }
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+footer {
+    margin-top: 60px;
+    font-size: 0.9rem;
+    color: #888;
+}
