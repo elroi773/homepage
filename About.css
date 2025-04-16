@@ -1,81 +1,491 @@
-@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700&display=swap');
-
-body {
-    margin: 0;
-    font-family: 'Pretendard', sans-serif;
-    background: linear-gradient(120deg, #f6fafd, #e0f7ff);
-    color: #333;
+/* 1. 폰트 및 기본 변수 설정 */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
 }
 
+:root {
+    --primary-color: #5c63f0;
+    --secondary-color: #771edd;
+    --bg-color: #1A1A1A;
+    --text-color: #333;
+    --light-text: #f7f7f7;
+}
+
+/* 2. 리셋 및 전역 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* 3. 파라락스 및 애니메이션 배경 */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: linear-gradient(135deg, var(--bg-color), #333333);
+    animation: gradientShift 15s ease infinite alternate;
+}
+
+@keyframes gradientShift {
+    0%   { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* 4. 컨테이너 */
 .container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 80px 20px;
     text-align: center;
 }
 
+/* 5. 네비게이션 바 (글래스모피즘 적용) */
+/* 상단 고정 네비게이션 바 */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+}
+
+/* 메뉴 컨테이너 */
+nav.textmenu {
+    font-family: 'Gmarket Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 30px;
+    /* background: linear-gradient(45deg, #5c63f0, #771edd); */
+    border-radius: 40px;
+    gap: 10px;
+    /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); */
+    transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* 🪄 마우스를 올렸을 때 배경 서서히 사라지게 */
+.nav:hover nav.textmenu {
+    background: transparent;
+    box-shadow: none;
+}
+
+/* 기본 메뉴 항목 숨김 */
+nav.textmenu a {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    padding: 12px 20px;
+    color: #ece3ff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease,
+        visibility 0.5s ease,
+        color 0.3s ease,
+        background-color 0.3s ease;
+    display: inline-block;
+    position: relative;
+}
+
+/* hover 시 메뉴 항목 효과 */
+nav.textmenu a:hover {
+    color: #ece3ff;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* 밑줄 효과 */
+nav.textmenu a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: #f2f5ff;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+nav.textmenu a:hover::before {
+    width: 100%;
+    left: 0;
+}
+
+/* 마우스 오버 시 메뉴 항목 딜레이 등장 */
+.nav:hover nav.textmenu a:nth-child(1) {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: 0s;
+}
+.nav:hover nav.textmenu a:nth-child(2) {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: 0.1s;
+}
+.nav:hover nav.textmenu a:nth-child(3) {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+.nav:hover nav.textmenu a:nth-child(4) {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: 0.3s;
+}
+.nav:hover nav.textmenu a:nth-child(5) {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+}
+
+/* 마지막 span은 숨김 */
+nav.textmenu span {
+    display: none;
+}
+
+
+/* 6. 헤더 및 타이포그래피 (네온 글로우 효과 포함) */
 header h1 {
     font-size: 3rem;
+    color: var(--primary-color);
+    /* text-shadow: 0 0 10px rgba(92, 99, 240, 0.7),
+                 0 0 20px rgba(119, 30, 221, 0.7); */
     margin-bottom: 10px;
-    color: #1a73e8;
 }
 
 .subtitle {
-    font-size: 1.2rem;
-    color: #555;
+    font-size: 1.3rem;
+    color: var(--light-text);
     margin-bottom: 50px;
+    animation: pulse 2s infinite;
 }
 
+@keyframes pulse {
+    0%   { text-shadow: 0 0 5px rgba(247, 247, 247, 0.7); }
+    50%  { text-shadow: 0 0 20px rgba(247, 247, 247, 1); }
+    100% { text-shadow: 0 0 5px rgba(247, 247, 247, 0.7); }
+}
+
+/* 7. 인재상 섹션 (카드 스타일 - 글래스모피즘 + 네온 효과) */
 .traits {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     gap: 30px;
+    justify-content: center;
+    position: relative;
+    margin-top: 100px;
+    padding-top: 40px;
+}
+
+.traits::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transform: translateX(-50%);
+    border-radius: 2px;
 }
 
 .trait {
-    background: white;
+    background: rgba(255, 255, 255, 0.435);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.trait.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .trait:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
 .trait h2 {
-    color: #0077cc;
-    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 12px;
 }
 
 .trait p {
     font-size: 1rem;
-    color: #555;
+    color: #e0e0e0;
 }
 
-/* Fade-in animations */
-.fade-in {
-    opacity: 0;
-    animation: fadeIn 1s ease-in forwards;
+/* 8. 지원 섹션 */
+.apply {
+    margin-top: 100px;
 }
 
-.delay1 { animation-delay: 0.3s; }
-.delay2 { animation-delay: 0.6s; }
-.delay3 { animation-delay: 0.9s; }
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
+.apply h6 {
+    color: #878787;
+    margin-bottom: 10px;
+    font-size: 20px;
 }
 
+.apply h1 {
+    color: #bebebe;
+    font-size: 40px;
+    padding-bottom: 50px;
+}
+
+/* 9. 버튼 (리플 및 네온 효과) */
+.button {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin: 20px auto;
+    padding: 12px 40px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    color: #faffc0;
+    font-size: 18px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+.button:hover::before {
+    width: 200%;
+    height: 200%;
+}
+
+.button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+/* 10. 푸터 */
 footer {
     margin-top: 60px;
     font-size: 0.9rem;
     color: #888;
+}
+
+/* 모달 전체 영역 스타일 */
+.modal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);  /* 어두운 배경 */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;  /* 하단 정렬 */
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  /* 모달 활성화 상태 */
+  .modal.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* 모달 내부 내용 (지원 폼) */
+  .modal-content {
+    background: var(--bg-color);
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    animation: slideUp 0.5s ease forwards;
+  }
+  
+  /* 아래에서 위로 슬라이드 애니메이션 */
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  /* 닫기 버튼 스타일 */
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--light-text);
+  }
+  
+  /* 지원 폼 내 기본 요소 스타일 */
+ /* 모달 오버레이 - 배경 페이드인 효과 */
+.modal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* 어두운 반투명 배경 */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* 하단에서 등장하도록 정렬 */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+  
+  /* 모달 활성화 시 보이도록 */
+  .modal.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* 모달 콘텐츠 - 바운스 효과 적용 */
+  .modal-content {
+    background: var(--bg-color); /* 기존 변수 활용 */
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    /* 아래에서 위로 슬라이드 업 + 바운스 효과 */
+    animation: slideUpBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+  
+  /* 바운스 효과 애니메이션 (슬라이드 업 + overshoot 효과) */
+  @keyframes slideUpBounce {
+    0% {
+      opacity: 0;
+      transform: translateY(100%) scale(0.9);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(-20px) scale(1.05);
+    }
+    80% {
+      transform: translateY(10px) scale(0.98);
+    }
+    100% {
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* 닫기 버튼 스타일 */
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--light-text);
+  }
+  
+  /* 지원 폼 내 스타일 */
+  #applyForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 40px;
+  }
+  
+  #applyForm label {
+    font-size: 0.9rem;
+    color: var(--light-text);
+  }
+  
+  #applyForm input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  #applyForm button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: #faffc0;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  
+  #applyForm button:hover {
+    transform: translateY(-3px);
+  }
+  
+
+/* 11. 반응형 디자인 */
+@media (max-width: 768px) {
+    .container {
+        padding: 40px 10px;
+    }
+    .traits {
+        flex-direction: column;
+        align-items: center;
+    }
+    .trait {
+        width: 100%;
+        max-width: 400px;
+    }
+    header h1 {
+        font-size: 2.5rem;
+    }
 }
