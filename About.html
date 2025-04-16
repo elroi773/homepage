@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - 인재상</title>
     <link rel="stylesheet" href="About.css">
 </head>
+
 <body>
+    <div class="nav">
+        <nav class="textmenu">
+            <a href="">Home</a>
+            <a href="About.html">About</a>
+            <a href="">Profile</a>
+            <a href="">Portfolio</a>
+            <a href="">Contact</a>
+            <span></span>
+        </nav>
+    </div>
     <div class="container">
         <header>
-            <h1>🚀 우리의 인재상</h1>
+            <h1>우리의 인재상</h1>
             <p class="subtitle">함께 성장하고, 세상을 변화시키는 사람</p>
         </header>
 
@@ -31,10 +43,38 @@
                 <p>작은 실천으로 세상에 긍정적인 변화를 만드는 사람</p>
             </div>
         </section>
-
+        <div class="apply fade-in">
+            <h6>내가 인재상인것 같다면?</h6>
+            <h1>회사 지원 하기</h1>
+            <button class="button">Apply</button>
+        </div>
         <footer>
             <p>© 2025 YourCompany Inc. All rights reserved.</p>
         </footer>
     </div>
+
+    <!-- 기존 콘텐츠에 추가 -->
+    <div class="modal" id="applyModal">
+        <div class="modal-content">
+            <span class="close" id="modalClose">&times;</span>
+            <h2>지원 폼</h2>
+            <form id="applyForm">
+                <label for="name">이름:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">이메일:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="portfolio">포트폴리오 (옵션):</label>
+                <input type="url" id="portfolio" name="portfolio">
+
+                <button type="submit">제출하기</button>
+            </form>
+        </div>
+    </div>
+    
+
+    <script src="About.js"></script>
 </body>
+
 </html>
