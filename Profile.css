@@ -1,0 +1,196 @@
+/* 1. 폰트 및 기본 변수 설정 */
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --primary-color: #5c63f0;
+  --secondary-color: #771edd;
+  --bg-color: #1a1a1a;
+  --text-color: #333;
+  --light-text: #f7f7f7;
+}
+
+/* 2. 리셋 및 전역 스타일 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Pretendard", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 5. 네비게이션 바 (글래스모피즘 적용) */
+/* 상단 고정 네비게이션 바 */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+}
+
+/* 메뉴 컨테이너 */
+nav.textmenu {
+  font-family: "Gmarket Sans", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 30px;
+  /* background: linear-gradient(45deg, #5c63f0, #771edd); */
+  border-radius: 40px;
+  gap: 10px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); */
+  transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* 🪄 마우스를 올렸을 때 배경 서서히 사라지게 */
+.nav:hover nav.textmenu {
+  background: transparent;
+  box-shadow: none;
+}
+
+/* 기본 메뉴 항목 숨김 */
+nav.textmenu a {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  padding: 12px 20px;
+  color: #ece3ff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s ease,
+    color 0.3s ease, background-color 0.3s ease;
+  display: inline-block;
+  position: relative;
+}
+
+/* hover 시 메뉴 항목 효과 */
+nav.textmenu a:hover {
+  color: #ece3ff;
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* 밑줄 효과 */
+nav.textmenu a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: #f2f5ff;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+nav.textmenu a:hover::before {
+  width: 100%;
+  left: 0;
+}
+
+/* 마우스 오버 시 메뉴 항목 딜레이 등장 */
+.nav:hover nav.textmenu a:nth-child(1) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+.nav:hover nav.textmenu a:nth-child(2) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+.nav:hover nav.textmenu a:nth-child(3) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+.nav:hover nav.textmenu a:nth-child(4) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+.nav:hover nav.textmenu a:nth-child(5) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+
+/* 마지막 span은 숨김 */
+nav.textmenu span {
+  display: none;
+}
+
+header {
+  background: #1e90ff;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  margin-left: 1rem;
+  text-decoration: none;
+}
+
+.hero {
+  background: #e9f5ff;
+  padding: 2rem;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.profile,
+.team {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.team-members {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.member {
+  text-align: center;
+}
+
+.member img {
+  width: 150px;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+}
+
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
